@@ -8,17 +8,14 @@ namespace Elasticsearch.API.Extensions
 
         public static void AddElastic(this IServiceCollection services, IConfiguration configuration)
         {
-
             var pool = new SingleNodeConnectionPool(new Uri(configuration.GetSection("Elastic")["Url"]!));
-
-
             var settings = new ConnectionSettings(pool);
 
+            //settings.BasicAuthentication() --username ve password
 
             var client = new ElasticClient(settings);
 
             services.AddSingleton(client);
-
         }
     }
 }

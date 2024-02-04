@@ -5,7 +5,6 @@ namespace Elasticsearch.API.DTOs
     public record ProductCreateDto(string Name, decimal Price, int Stock, ProductFeatureDto Feature)
     {
 
-
         public Product CreateProduct()
         {
             return new Product
@@ -20,9 +19,7 @@ namespace Elasticsearch.API.DTOs
                     Color = (EColor)int.Parse(Feature.Color)
                 }
             };
-
-
-            }
+        }
     }
 
 
