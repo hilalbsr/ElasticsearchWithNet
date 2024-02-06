@@ -1,5 +1,4 @@
 ﻿using Elasticsearch.API.DTOs;
-using Nest;
 
 namespace Elasticsearch.API.Models
 {
@@ -8,8 +7,6 @@ namespace Elasticsearch.API.Models
     {
        //İlişki kurulabilir ama gerçek bir ilişkileri olmaz.
 
-         
-        [PropertyName("_id")]
         public string Id { get; set; } = null!;//null olamaz.
         public string Name { get; set; } = null!;
         public decimal Price { get; set; }
