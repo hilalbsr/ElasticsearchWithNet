@@ -34,9 +34,7 @@ namespace Elasticsearch.API.Models.ECommerceModel
     }
 
     public class Product
-
     {
-
         [JsonPropertyName("product_id")]
         public long ProductId { get; set; }
 
