@@ -15,21 +15,20 @@ namespace Elasticsearch.Web.Services
 
 		public async Task<(List<ECommerceViewModel>, long totalCount, long pageLinkCount)> SearchAsync(ECommerceSearchViewModel searchModel, int page, int pageSize)
 		{
+			//list
+			//totalCount
+			// 1 2 3 4 5 6 7 8 9 10
+			//52 % 10 = 2
+			// 1 2 3 4 5 6
+
 			var (eCommerceList, totalCount) = await _repository.SearchAsync(searchModel, page, pageSize);
 
 			var pageLinkCountCalculate = totalCount % pageSize;
-
 			long pageLinkCount = 0;
 
-			if (pageLinkCountCalculate == 0)
-			{
-				pageLinkCount = totalCount / pageSize;
-			}
-			else
-			{
-				pageLinkCount = (totalCount / pageSize) + 1;
-
-			}
+            pageLinkCount  = pageLinkCountCalculate == 0
+                           ? totalCount / pageSize 
+                           : (totalCount / pageSize) + 1;
 
 			var eCommerceListViewModel = eCommerceList.Select(x => new ECommerceViewModel()
 			{
@@ -42,16 +41,10 @@ namespace Elasticsearch.Web.Services
 				Id = x.Id,
 				OrderId = x.OrderId,
 				TaxfulTotalPrice = x.TaxfulTotalPrice
-
-
-
 			}).ToList();
 
 
 			return (eCommerceListViewModel, totalCount, pageLinkCount);
-
-
-
 		}
 	}
 }

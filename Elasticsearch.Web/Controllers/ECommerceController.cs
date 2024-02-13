@@ -19,13 +19,9 @@ namespace Elasticsearch.Web.Controllers
 			var (eCommerceList,totalCount,pageLinkCount) = await _service.SearchAsync(searchPageView.SearchViewModel, searchPageView.Page,
 				searchPageView.PageSize);
 
-
 			searchPageView.List = eCommerceList;
 			searchPageView.TotalCount = totalCount;
 			searchPageView.PageLinkCount = pageLinkCount;
-
-
-
 
 			return View(searchPageView);
 		}
